@@ -18,4 +18,14 @@ export class RecipeService {
       }),
     );
   }
+
+  // Obtener una receta por ID
+  getRecipeById(id: string): Observable<Meal | null> {
+    return this.http.get<MealAPIResponse>(`${this.API_URL}/lookup.php?i=${id}`).pipe(
+      map((response) => {
+        if (!response.meals || response.meals.length === 0) return null;
+        return mapRawMealToMeal(response.meals[0]);
+      })
+    );
+  }
 }
