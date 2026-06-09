@@ -129,7 +129,7 @@ import { Meal } from '../../interfaces/recipe.interface';
         } @else {
           <!-- Estado vacío o error -->
           <div class="text-center py-20">
-            <h2 class="text-2xl font-bold text-gray-700">No pudimos encontrar la receta 😢</h2>
+            <h2 class="text-2xl font-bold text-gray-700">No pudimos encontrar la receta</h2>
           </div>
         }
       </div>
