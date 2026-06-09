@@ -28,4 +28,15 @@ export class RecipeService {
       })
     );
   }
+
+  // Obtener un receta aleatoria
+  getRandomRecipe(): Observable<Meal | null> {
+    return this.http.get<MealAPIResponse>(`${this.API_URL}/random.php`).pipe(
+      map((response) => {
+        if (!response.meals || response.meals.length === 0) return null;
+        return mapRawMealToMeal(response.meals[0]);
+      })
+    );
+  }
+
 }
