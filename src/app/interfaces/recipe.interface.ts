@@ -71,3 +71,14 @@ export function mapRawMealToMeal(raw: RawMeal): Meal {
     ingredients: ingredients
   };
 }
+
+export interface CategoryAPIResponse {
+  categories: Category[];
+}
+
+export interface Category {
+  idCategory: string;
+  strCategory: string;
+  strCategoryThumb: string;
+  strCategoryDescription: string;
+}

@@ -1,0 +1,35 @@
+<section class="mb-16">
+    <div class="flex items-center justify-between mb-6 px-2">
+        <h2 class="text-2xl font-bold text-gray-800">Explorar por Categorías</h2>
+    </div>
+
+    @if (loading()) {
+    <div class="flex gap-6 overflow-hidden">
+        @for (i of [1,2,3,4,5]; track i) {
+        <div class="animate-pulse bg-gray-200 rounded-2xl min-w-40 h-40"></div>
+        }
+    </div>
+    } @else {
+    <div class="flex overflow-x-auto overflow-y-hidden gap-6 pb-6 pt-2 custom-scrollbar snap-x snap-mandatory px-2">
+
+        @for (category of categories(); track category.idCategory; let i = $index) {
+
+        <a [routerLink]="['/search']" [queryParams]="{ q: category.strCategory }"
+            class="reveal-card group relative shrink-0 w-40 md:w-48 bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 snap-start cursor-pointer overflow-hidden"
+            [style.animation-delay]="(i * 100) + 'ms'">
+            <div class="p-4 flex flex-col items-center">
+                <div
+                    class="w-24 h-24 mb-3 rounded-full bg-orange-50/50 flex items-center justify-center group-hover:bg-orange-100 transition-colors duration-300">
+                    <img [src]="category.strCategoryThumb" [alt]="category.strCategory"
+                        class="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" />
+                </div>
+                <h3 class="font-bold text-gray-800 group-hover:text-orange-500 transition-colors text-center">
+                    {{ category.strCategory }}
+                </h3>
+            </div>
+        </a>
+
+        }
+    </div>
+    }
+</section>

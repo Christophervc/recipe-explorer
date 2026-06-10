@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { mapRawMealToMeal, Meal, MealAPIResponse } from '../../../interfaces/recipe.interface';
+import { Category, CategoryAPIResponse, mapRawMealToMeal, Meal, MealAPIResponse } from '../../../interfaces/recipe.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -39,4 +39,10 @@ export class RecipeService {
     );
   }
 
+  // Obtener categorias de recetas
+  getCategories(): Observable<Category[]> {
+    return this.http.get<CategoryAPIResponse>(`${this.API_URL}/categories.php`).pipe(
+      map(response => response.categories || [])
+    );
+  }
 }
